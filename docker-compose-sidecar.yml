@@ -1,0 +1,11 @@
+version: '2'
+services:
+  service-sidecar-tls:
+    image: linimbus/service-sidecar-tls
+    cap_add:
+      - NET_ADMIN
+    network_mode: "container:root_httpfile_1"
+    volumes:
+      - /root/cert:/opt/crt
+    command:
+      - "8080"
