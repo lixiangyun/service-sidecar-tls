@@ -12,12 +12,13 @@ RUN go build .
 
 FROM ubuntu:xenial
 
-WORKDIR /bin/
-COPY --from=0 /gopath/src/github.com/lixiangyun/tcpproxy/tcpproxy ./tcpproxy
+WORKDIR /opt/
 COPY ./proxy.sh ./proxy.sh
-COPY ./config.yaml ./config.yaml
+COPY ./config.yaml.temp ./config.yaml.temp
 
-RUN chmod +x ./tcpproxy
+COPY --from=0 /gopath/src/github.com/lixiangyun/tcpproxy/tcpproxy ./tcpproxy
+
+RUN chmod +x *
 
 RUN apt-get update 
 RUN apt-get install -y iproute2 iptables 
