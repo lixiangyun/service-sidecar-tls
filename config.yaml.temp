@@ -1,0 +1,13 @@
+listeners:
+  - address: 0.0.0.0:15001
+    cluster: ingress
+    tls: server_ssl
+clusters:
+  - name: ingress
+    endpoints:
+    - 127.0.0.1:_PORT
+tls:
+  - name: server_ssl
+    ca: /opt/crt/ca.crt
+    key: /opt/crt/server.pem
+    cert: /opt/crt/server.crt
